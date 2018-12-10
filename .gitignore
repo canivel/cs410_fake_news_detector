@@ -3,5 +3,4 @@
 .ipynb_checkpoints
 data
 node_modules
-*.pkl
-*.txt
+lgb_model_best_iter_5.txt

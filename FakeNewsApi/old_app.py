@@ -1,7 +1,6 @@
 import re
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
-from flasgger import Swagger
 import pickle as pkl
 import numpy as np
 import lightgbm as gbm
@@ -10,9 +9,7 @@ from nltk.corpus import stopwords
 from models.model import FakeNewsModel
 
 app = Flask(__name__)
-#api = Api(app)
 api = Api(app)
-swagger = Swagger(app)
 
 stemmer = SnowballStemmer("english")
 
@@ -37,50 +34,7 @@ parser.add_argument('author')
 parser.add_argument('text')
 
 class PredictFakeNews(Resource):
-
     def post(self):
-        """
-        This examples uses FlaskRESTful Resource
-        ---
-        tags:
-          - "is fake news?"
-        summary: "Check if news is fake"
-        description: ""
-        operationId: "isfakenews"
-        consumes:
-          - "application/json"
-        produces:
-          - "application/json"
-        parameters:
-          - in: "body"
-            name: "body"
-            description: "Check if News is fake"
-            required: true
-            schema:
-              $ref: "#/definitions/News"
-        responses:
-          '200':
-            description: 'news checked'
-          '400':
-            description: 'invalid input, object invalid'
-        definitions:
-          News:
-            type: object
-            required:
-              - "title"
-              - "author"
-              - "text"
-            properties:
-              title:
-                type: "string"
-                description: "Title of the news"
-              author:
-                type: "string"
-                description: "Author of the news"
-              text:
-                type: "string"
-                description: "Body of the news"
-         """
         # use parser and find the user's query
         args = parser.parse_args()
         title = args['title']
@@ -103,7 +57,7 @@ class PredictFakeNews(Resource):
         # create JSON object
         output = {'prediction': pred_text, 'fake_rate': confidence}
 
-        return output, 200
+        return output
 
 
 # Setup the Api resource routing here

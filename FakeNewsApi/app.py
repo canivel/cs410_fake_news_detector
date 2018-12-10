@@ -49,6 +49,7 @@ class PredictFakeNews(Resource):
         operationId: "isfakenews"
         consumes:
           - "application/json"
+          - "application/x-www-form-urlencoded"
         produces:
           - "application/json"
         parameters:

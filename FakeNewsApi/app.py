@@ -1,6 +1,7 @@
 import re
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
+from flask_cors import CORS
 from flasgger import Swagger
 import pickle as pkl
 import numpy as np
@@ -11,6 +12,7 @@ from models.model import FakeNewsModel
 
 app = Flask(__name__)
 #api = Api(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 swagger = Swagger(app)
 
@@ -49,7 +51,6 @@ class PredictFakeNews(Resource):
         operationId: "isfakenews"
         consumes:
           - "application/json"
-          - "application/x-www-form-urlencoded"
         produces:
           - "application/json"
         parameters:

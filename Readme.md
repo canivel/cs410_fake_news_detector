@@ -1,7 +1,5 @@
 # CS410 - Final Project - Fake News Dectector
 
-Intro:
-
 Let's create a classifier that returns the probability for a news to be fake or not.
 
 The classifier use news from the only two main stream media that provide a open API to fetch news from them: NYT and The Guardian

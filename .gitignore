@@ -4,3 +4,4 @@
 data
 node_modules
 lgb_model_best_iter_5.txt
+__pycache__

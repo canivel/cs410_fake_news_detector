@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import isFakeNewsReducer from "./postsReducer";
+import { reducer as formReducer } from "redux-form";
+import isFakeNewsReducer from "./isFakeNewsReducer";
 
 export default combineReducers({
-  fakeNews: isFakeNewsReducer
+  fakeNews: isFakeNewsReducer,
+  form: formReducer
 });

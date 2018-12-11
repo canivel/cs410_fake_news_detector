@@ -1,20 +1,18 @@
 import fakeNewsApi from "../apis/fakeNewsCanivel";
 
-export const isFakeNews = (title, author, text) => {
+export const isFakeNews = formValues => {
   return async dispatch => {
     const response = await fakeNewsApi.post(
       "/isfakenews",
-      {
-        title: title,
-        author: author,
-        text: text
-      },
+      { ...formValues },
       {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/json"
         }
       }
     );
+
+    console.log(response);
 
     dispatch({
       type: "IS_FAKE_NEWS",

@@ -78,17 +78,19 @@ def train_lgb(d_train, watchlist, valid_X, valid_y):
     # parameters for LightGBMClassifier
     params = {
         'objective': 'binary',
-        'learning_rate': 0.4,
+        'learning_rate': 0.1,
         'num_leaves': 31,
         'feature_fraction': 0.64,
         'bagging_fraction': 0.8,
         'bagging_freq': 1,
         'boosting_type': 'gbdt',
-        'metric': 'binary_logloss'
+        'metric': 'binary_logloss',
+        'max_depth': 9,
+        'is_unbalance': True
     }
 
     model = lgb.train(params, train_set=d_train, num_boost_round=6000, valid_sets=watchlist,
-                      early_stopping_rounds=1000, verbose_eval=1)
+                      early_stopping_rounds=200, verbose_eval=1)
 
     preds = model.predict(valid_X)
     print("LGB dev f1_score:", f1_score(valid_y, np.round(preds)))
@@ -140,7 +142,7 @@ if __name__ == '__main__':
                                                     "hash_size": 2 ** 23,
                                                     "norm": 'l2',
                                                     "tf": 'log',
-                                                    "idf": 50.0}
+                                                    "idf": 10.0}
                                           )
                              , procs=8
                              , method="serial")
@@ -163,10 +165,10 @@ if __name__ == '__main__':
     print("sparse_merge shape", sparse_merge.shape)
 
     # Remove features with document frequency <= 100
-    mask100 = np.array(np.clip(sparse_merge.getnnz(axis=0) - 100, 0, 1), dtype=bool)
-    sparse_merge100 = sparse_merge[:, mask100]
-    X = sparse_merge100[:train_size]
-    X_test = sparse_merge100[train_size:]
+    # mask100 = np.array(np.clip(sparse_merge.getnnz(axis=0) - 100, 0, 1), dtype=bool)
+    # sparse_merge100 = sparse_merge[:, mask100]
+    X = sparse_merge[:train_size]
+    X_test = sparse_merge[train_size:]
 
     train_X, valid_X, train_y, valid_y = train_test_split(X, y, test_size=0.05, random_state=100)
 
@@ -178,8 +180,8 @@ if __name__ == '__main__':
     clf = train_lgb(d_train, watchlist, valid_X, valid_y)
 
     print("Saving models")
-    with gzip.open('data/models/models.pkl', 'wb') as model_file:
-        pkl.dump((wb, clf), model_file, protocol=2)
+    with gzip.open('data/models/wb_transform.pkl', 'wb') as model_file:
+        pkl.dump(wb, model_file, protocol=2)
 
     print("Models Saved")
 

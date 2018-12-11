@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://cs410.canivel.com"
+  baseURL: "http://cs410.canivel.com/api"
 });

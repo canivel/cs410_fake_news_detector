@@ -32,32 +32,30 @@ class FakeNewsForm extends Component {
 
   render() {
     return (
-      <div className="ui segment">
-        <form
-          className="ui form"
-          onSubmit={this.props.handleSubmit(this.onSubmitNews)}
-        >
-          <Field
-            name="author"
-            component={this.renderInput}
-            label="Enter Author"
-            type="text"
-          />
-          <Field
-            name="title"
-            component={this.renderInput}
-            label="Enter Title"
-            type="text"
-          />
-          <Field
-            name="text"
-            component={this.renderTextArea}
-            label="Enter News Body"
-            type="textarea"
-          />
-          <button className="ui button primary">Evaluate News</button>
-        </form>
-      </div>
+      <form
+        className="ui form"
+        onSubmit={this.props.handleSubmit(this.onSubmitNews)}
+      >
+        <Field
+          name="author"
+          component={this.renderInput}
+          label="Enter Author"
+          type="text"
+        />
+        <Field
+          name="title"
+          component={this.renderInput}
+          label="Enter Title"
+          type="text"
+        />
+        <Field
+          name="text"
+          component={this.renderTextArea}
+          label="Enter News Body"
+          type="textarea"
+        />
+        <button className="ui button primary">Evaluate News</button>
+      </form>
     );
   }
 }

@@ -11,9 +11,6 @@ export const isFakeNews = formValues => {
         }
       }
     );
-
-    console.log(response);
-
     dispatch({
       type: "IS_FAKE_NEWS",
       payload: response.data

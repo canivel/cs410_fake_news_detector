@@ -5,8 +5,13 @@ export class App extends Component {
   render() {
     return (
       <div className="ui container">
-        <h1>Fake News Realiability Rating</h1>
-        <FakeNewsEvaluate />
+        <div
+          className="middle align row"
+          style={{ marginTop: "30px", textAlign: "center" }}
+        >
+          <h1>Fake News Realiability Rating</h1>
+          <FakeNewsEvaluate />
+        </div>
       </div>
     );
   }

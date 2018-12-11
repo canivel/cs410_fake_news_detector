@@ -9,7 +9,7 @@ export class App extends Component {
           className="middle align row"
           style={{ marginTop: "30px", textAlign: "center" }}
         >
-          <h1>Fake News Realiability Rating</h1>
+          <h1>Fake News - Reliability Rating</h1>
           <FakeNewsEvaluate />
         </div>
       </div>

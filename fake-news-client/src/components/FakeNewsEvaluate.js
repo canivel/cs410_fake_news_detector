@@ -16,6 +16,7 @@ class FakeNewsEvaluate extends React.Component {
         <div>
           <h2>{this.props.fakeness.fakeNews.prediction}</h2>
           <h2>{this.props.fakeness.fakeNews.fake_rate}</h2>
+          <p>* as close to to 1 more Fake it is.</p>
         </div>
       );
     }

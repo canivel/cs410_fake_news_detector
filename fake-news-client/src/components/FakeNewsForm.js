@@ -2,28 +2,44 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class FakeNewsForm extends Component {
-  renderInput(formProps) {
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    }
+  }
+
+  renderInput = formProps => {
+    const className = `field ${
+      formProps.meta.error && formProps.meta.touched ? "error" : ""
+    }`;
     return (
       // <input
       //   onChange={formProps.input.onChange}
       //   value={formProps.input.value}
       // />
       //same thing as above
-      <div className="field">
+      <div className={className}>
         <label>{formProps.label}</label>
         <input {...formProps.input} />
+        {this.renderError(formProps.meta)}
       </div>
     );
-  }
+  };
 
-  renderTextArea({ input, label }) {
+  renderTextArea = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
-      <div className="field">
+      <div className={className}>
         <label>{label}</label>
         <textarea {...input} />
+        {this.renderError(meta)}
       </div>
     );
-  }
+  };
 
   onSubmitNews = formValues => {
     this.props.onSubmit(formValues);
@@ -35,6 +51,7 @@ class FakeNewsForm extends Component {
       <form
         className="ui form"
         onSubmit={this.props.handleSubmit(this.onSubmitNews)}
+        className="ui form error"
       >
         <Field
           name="author"
@@ -60,6 +77,25 @@ class FakeNewsForm extends Component {
   }
 }
 
+const validate = formValues => {
+  const errors = {};
+
+  if (!formValues.author) {
+    errors.author = "You must enter a author";
+  }
+
+  if (!formValues.title) {
+    errors.title = "You must enter a title";
+  }
+
+  if (!formValues.text) {
+    errors.text = "You must enter a news text ...";
+  }
+
+  return errors;
+};
+
 export default reduxForm({
-  form: "fakeNews" // a unique identifier for this form
+  form: "fakeNews", // a unique identifier for this form
+  validate
 })(FakeNewsForm);

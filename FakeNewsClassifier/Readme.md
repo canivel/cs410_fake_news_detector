@@ -2,16 +2,16 @@
 
 Before you begin lest create a folder /data at the root of your project, where we are going to store our generated files
 
-##nyt_spyder.py
+## nyt_spyder.py
 * Scrap data from NYT and save it to a MongoDB database, you just need to set the initial end date (scraper starts at this date and moves back in
 time sequentially)
 * Code for each function is commented in the code
-##tg_spyder.py
+## tg_spyder.py
 * Scrap data from The Guardian and save it to a MongoDB database, you just need to set the initial end date (scraper starts at this date and moves back in
 time sequentially)
 * Code for each function is commented in the code
 
-##clean_news_data.py
+## clean_news_data.py
 * This script will merge both scrapped sites in a single dataset
 * Run this script after scrapy the data from the two news sites
 * It will connect to your local MongoDB, select both collections, if you created with the exact names in the instructions, clean, merge it and convert it to csv
@@ -21,7 +21,7 @@ time sequentially)
     * data/nyt_articles_v2.csv
     * data/nyt_tg.csv (this is the merged file)
 
-##dataset_builder.py
+## dataset_builder.py
 * this script will add Kaggle datasets and our generated file in a single dataset
 * We start by loading all 3 datasets
 * fill the Nans for author, title and text, since that are the only 3 features that Kaggle has in one of the datasets
@@ -31,7 +31,7 @@ time sequentially)
 * a final dataset is generated and saved at data/df_final_v1.csv
 
 
-##training.py
+## training.py
 *Before running this file, make sure to change the flag inside the __main__ if you want to generate a kaggle submission, is_kaggle = False
 *We load our datasets and our kaggle/test.csv file to generate the submission
 *save the dimensions of the training, the labels and the ids from the test

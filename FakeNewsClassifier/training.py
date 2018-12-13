@@ -144,8 +144,7 @@ if __name__ == '__main__':
                                                     "tf": 'log',
                                                     "idf": 10.0}
                                           )
-                             , procs=8
-                             , method="serial")
+                             , procs=8)
 
     wb.dictionary_freeze = True
 

@@ -10,7 +10,7 @@ With this method you are going to achieve .995% Accuracy base on a Kaggle compet
 
 
 ## Presentation
-[![Watch the video](http://img.youtube.com/vi/0.jpg)](https://youtu.be/N5gY9SXAHpI)
+https://youtu.be/N5gY9SXAHpI
 
 #### Requirements:
 * Python3.6+, MongoDB and some libs(pip install -r requirements.txt)

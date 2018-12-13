@@ -9,6 +9,9 @@ With this method you are going to achieve .995% Accuracy base on a Kaggle compet
 ![Kaggle First Place Fake News](https://github.com/canivel/cs410_fake_news_detector/blob/master/imgs_readme/sub-kaggle.png)
 
 
+## Presentation
+[![Watch the video](http://img.youtube.com/vi/0.jpg)](https://youtu.be/N5gY9SXAHpI)
+
 #### Requirements:
 * Python3.6+, MongoDB and some libs(pip install -r requirements.txt)
 * Kaggle Fake news competition data https://www.kaggle.com/c/fake-news/data (Train and Test)

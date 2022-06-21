@@ -1,4 +1,4 @@
-numpy==1.15.4
+numpy==1.22.0
 Cython==0.29.1
 Flask==1.0.2
 Flask-RESTful==0.3.6
